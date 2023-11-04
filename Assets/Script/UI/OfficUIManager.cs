@@ -1,18 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OfficUIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   [SerializeField] private Image _showPopup;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   public Action OnOpenFile;
+   public Action OnOpenWatch;
+   public Action OnShowClose;
+   public void ShowPopup() =>   _showPopup.gameObject.SetActive(true);
+   
+   public void OnShowFile()
+   {
+      ShowPopup();
+      OnOpenFile();
+   }
+   public void OnShowWatch()
+   {
+      ShowPopup();
+      OnOpenWatch();
+   }
+
+   public void OnClose()
+   {
+      OnShowClose();
+      _showPopup.gameObject.SetActive(false);
+   }
 }
