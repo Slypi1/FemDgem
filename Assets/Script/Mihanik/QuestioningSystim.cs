@@ -16,26 +16,60 @@ public class QuestioningSystim : MonoBehaviour
    [SerializeField] private float _speedText;
    [SerializeField] private Image _sprite;
    private List<DialogSetting.Dialog> _dialogs;
+   [SerializeField]private Quests _prefab;
+   [SerializeField]private Transform _transformParent;
+   
    private string _diolog;
    private int index;
+   private string _namePer;
+   private List<string> _question = new List<string>();
    private void OnEnable()
    {
       File.OnNameHiro += StartQuestioning;
+      Quests.OnQuestion += StartDialog;
    }
    private void OnDisable()
    {
-      File.OnNameHiro += StartQuestioning;
+      File.OnNameHiro -= StartQuestioning;
+      Quests.OnQuestion -= StartDialog;
    }
 
    private void  StartQuestioning(string name)
    {
       _icon.sprite = _dialogSetting.GetIcon(name);
       _sprite.GameObject().SetActive(true);
-      _dialogs = _dialogSetting.GetDialogs(name);
-      index = 0;
-      StartCoroutine(TypeLine());
+      _namePer= name;
+      ShowQuest();
    }
 
+   private void  ShowQuest()
+   {
+      var questions = _dialogSetting.GetQuestion(_namePer);
+      var idx = 0;
+      if (_question.Count != questions.Count)
+      {
+         foreach (var question in questions)
+         {
+            if (_question.Contains(question.Quest))
+               continue;
+            
+            _transformParent.GetChild(idx).GetComponent<Quests>().gameObject.SetActive(true);
+            _transformParent.GetChild(idx).GetComponent<Quests>().Setup(question.Quest);
+            idx++;
+         }
+      }
+      else
+      {
+         _sprite.gameObject.SetActive(false);
+      }
+   }
+   private void StartDialog(string quest)
+   {
+       _question.Add(quest);
+       index = 0;
+      _dialogs = _dialogSetting.GetDialogs(quest,_namePer);
+      StartCoroutine(TypeLine());
+   }
    public void OnNextDialod()
    {
       _dialogText.text = string.Empty;
@@ -45,10 +79,18 @@ public class QuestioningSystim : MonoBehaviour
          index++;
          StartCoroutine(TypeLine());
       }
+      else
+      {
+         ShowQuest();
+      }
    }
    
    IEnumerator TypeLine()
    {
+      for (int i = 0; i < _transformParent.childCount; i++)
+      {
+         _transformParent.GetChild(i).gameObject.SetActive(false);
+      }
       var dialog = _dialogs[index].Replica;
       _name.text = _dialogs[index].Name;
          foreach (var x in dialog.ToCharArray())

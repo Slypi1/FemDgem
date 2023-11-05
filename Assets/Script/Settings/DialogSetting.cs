@@ -6,15 +6,15 @@ using UnityEngine;
 public class DialogSetting :ScriptableObject
 {
     [SerializeField] private List<DialogDate> _dialogDates;
-
+ 
     public List<DialogDate> DialogDates => _dialogDates;
     
-    public List<Dialog> GetDialogs(string name)
+    public List<Dialog> GetDialogs(string quest, string name)
     {
         var dialogs = new List<Dialog>();
-
-        dialogs = _dialogDates.Find(x => x.Name == name).Dialogs;
-
+         var questions = _dialogDates.Find(x => x.Name == name).Questions;
+         dialogs = questions.Find(x => x.Quest == quest).Dialogs;
+        
         return dialogs;
     }
 
@@ -24,19 +24,34 @@ public class DialogSetting :ScriptableObject
 
         return icon;
     }
-    
+
+    public List<Question> GetQuestion(string name)
+    {
+        var questions = new List<Question>();
+        questions = _dialogDates.Find(x => x.Name == name).Questions;
+
+        return questions;
+    }
+
     [Serializable]
     public class DialogDate
     {
         public string Name;
         public Sprite Icon;
-        public List<Dialog> Dialogs;
+        public List <Question> Questions;
     }
     
     [Serializable]
     public class Dialog
     {
         public string Name;
+        public float Lie;
         public string Replica;
+    }
+    [Serializable]
+    public class Question
+    {
+        public string Quest;
+        public List<Dialog> Dialogs;
     }
 }
