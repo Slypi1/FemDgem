@@ -1,28 +1,38 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
-public class Arrow : MonoBehaviour, IPointerClickHandler,IPointerExitHandler
+public class Arrow : MonoBehaviour,IBeginDragHandler,IDragHandler
 {
     [SerializeField] private Image _smallArrow;
-    
-    private void Start()
+    public Vector3 mousePos, position;
+    private Vector2 mousePosition;
+
+    public void OnDrag(PointerEventData eventData)
     {
-        throw new NotImplementedException();
+        var mouseCoord = new Vector2(Input.mousePosition.x - Screen.width / 2, Screen.height - Input.mousePosition.y - Screen.height / 2);
+        
+        var angle = Mathf.Atan2(mouseCoord.x,mouseCoord.y) * Mathf.Rad2Deg;
+       
+        _smallArrow.transform.Rotate(new Vector3(0, 0,  -angle), 2.5f);
+       /* Vector3 relative = transform.InverseTransformPoint(eventData.position);
+        float angle = Mathf.Atan2(relative.x, relative.y) * Mathf.Rad2Deg;
+        if (angle >= 45f)
+        {
+            angle += 10f;
+        }
+        var angleArrow = _smallArrow.GetComponent<RectTransform>().transform.rotation.z;
+        _smallArrow.transform.Rotate(new Vector3(0, 0,  -angle), 2.5f);
+        //var = Quaternion.Euler(0, 0,  angle);*/
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        var rotation = _smallArrow.GetComponent<RectTransform>().rotation;
-        
-        
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
+        mousePosition = eventData.position;
     }
 }
