@@ -16,6 +16,12 @@ public class DialogStandartSetting :ScriptableObject
         return dialog;
     }
 
+    public List<Dialog> GetEndDialogs()
+    {
+        var dialog = _dialogDates[1].Dialog;
+        return dialog;
+    }
+
     public Dialog StartTutorial => _startTutorial;
     public Dialog ExitTutorial => _exitTutorial;
 
