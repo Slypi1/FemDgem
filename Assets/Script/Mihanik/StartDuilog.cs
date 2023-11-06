@@ -17,7 +17,6 @@ public class StartDuilog : MonoBehaviour
     private int _index;
 
     [Header("BossOffice")]
-    [SerializeField] private DialogStandartSetting _dialogBossOffice;
     [SerializeField] private TMP_Text _nameOffice;
     [SerializeField] private TMP_Text _dialogTextOffice;
     private List<DialogStandartSetting.Dialog> _dialogOffice;
