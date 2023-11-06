@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -19,9 +20,17 @@ public class StartDuilog : MonoBehaviour
     [Header("BossOffice")]
     [SerializeField] private TMP_Text _nameOffice;
     [SerializeField] private TMP_Text _dialogTextOffice;
+    [SerializeField] private GameObject _dialogG;
+    [SerializeField] private Image _girl;
+    [SerializeField] private Image _offic;
+    [SerializeField] private Image _newOffic;
     private List<DialogStandartSetting.Dialog> _dialogOffice;
-    private int _indexOffice;
+    private DialogStandartSetting.Dialog _tutor;
     
+    
+    private int _indexOffice;
+    public static Action OnStartTutor;
+
     private void Start()
     {
         _dialog = _dialogStandartSetting.GetStartDialog();
@@ -41,9 +50,18 @@ public class StartDuilog : MonoBehaviour
         { 
             _start.gameObject.SetActive(false);
            _bossOffice.gameObject.SetActive(true);
+           _tutor = _dialogStandartSetting.StartTutorial;
+           StartCoroutine(TypeTutor());
         }
     }
-    
+
+    public void StartTutor()
+    {
+        _girl.gameObject.SetActive(false);
+        _offic.gameObject.SetActive(false);
+        _newOffic.gameObject.SetActive(true);
+        OnStartTutor();
+    }
     IEnumerator TypeLine()
     {
         var dialog = _dialog[_index].Replica;
@@ -53,5 +71,16 @@ public class StartDuilog : MonoBehaviour
             _dialogText.text += x;
             yield return new WaitForSeconds(_speedText);
         }
+    }
+    IEnumerator TypeTutor()
+    {
+        var dialog = _tutor.Replica;
+        _name.text = _tutor.Name;
+        foreach (var x in dialog.ToCharArray())
+        {
+            _dialogText.text += x;
+            yield return new WaitForSeconds(_speedText);
+        }
+        _dialogG.SetActive(false);
     }
 }
