@@ -7217,6 +7217,7 @@ MonoBehaviour:
   _girl: {fileID: 1915624582}
   _offic: {fileID: 355999593}
   _newOffic: {fileID: 190035867}
+  _arrow: {fileID: 1820018167}
   _arrow: {fileID: 1652765925}
 --- !u!114 &1786351839
 MonoBehaviour:
@@ -7489,7 +7490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1820018166
 RectTransform:
   m_ObjectHideFlags: 0
