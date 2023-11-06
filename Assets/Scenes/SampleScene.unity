@@ -810,6 +810,7 @@ MonoBehaviour:
   - {fileID: 168404777}
   - {fileID: 805550895}
   - {fileID: 144751257}
+  _of: {fileID: 0}
 --- !u!1 &124834140
 GameObject:
   m_ObjectHideFlags: 0
@@ -3171,6 +3172,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 784fef1025afc334a82cd5b6ef75e04d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profiles:
+  - {fileID: 11400000, guid: 20885139fe40f2c46a703b3a3d78187e, type: 2}
+  - {fileID: 11400000, guid: e10305be6cfd800448a4a0b635ed7dfd, type: 2}
+  - {fileID: 11400000, guid: ddaecf41573383f4baa979bec74385b1, type: 2}
+  - {fileID: 11400000, guid: cb56c94c2e31f5145b108ad4d5c7a7f6, type: 2}
+  - {fileID: 11400000, guid: 922fb1f587725ad45a032880e22021e8, type: 2}
+  - {fileID: 11400000, guid: d95073cffc416074e9b73c938e00a10e, type: 2}
+  - {fileID: 11400000, guid: ef598f7983c566c4f9012e687f5cba44, type: 2}
   _name: {fileID: 0}
 --- !u!1 &616838036
 GameObject:
@@ -7617,7 +7626,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1875739951}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 608147892}
+        m_TargetAssemblyTypeName: File, Assembly-CSharp
+        m_MethodName: NextFile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1875739951
 MonoBehaviour:
   m_ObjectHideFlags: 0
