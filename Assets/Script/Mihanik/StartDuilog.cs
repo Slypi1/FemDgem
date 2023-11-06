@@ -24,10 +24,11 @@ public class StartDuilog : MonoBehaviour
     [SerializeField] private Image _girl;
     [SerializeField] private Image _offic;
     [SerializeField] private Image _newOffic;
+    [SerializeField] private Image _arrow;
     private List<DialogStandartSetting.Dialog> _dialogOffice;
     private DialogStandartSetting.Dialog _tutor;
-    
-    
+
+    private bool i = true;
     private int _indexOffice;
     public static Action OnStartTutor;
 
@@ -36,6 +37,22 @@ public class StartDuilog : MonoBehaviour
         _dialog = _dialogStandartSetting.GetStartDialog();
         _index = 0;
         StartCoroutine(TypeLine());
+    }
+
+    private void OnDisable()
+    {
+        Arrow._isWath += ExitTutor;
+    }
+
+    private void OnEnable()
+    {
+        Arrow._isWath -= ExitTutor;
+    }
+
+    private void ExitTutor()
+    {
+        _arrow.gameObject.SetActive(false);
+        _dialog = _dialogStandartSetting.GetEndDialogs();
     }
     public void OnNextDialod()
     {
