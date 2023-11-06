@@ -18,7 +18,7 @@ public class Arrow : MonoBehaviour,IBeginDragHandler,IDragHandler
         var mouseCoord = new Vector2(Input.mousePosition.x - Screen.width / 2, Screen.height - Input.mousePosition.y - Screen.height / 2);
         
         var angle = Mathf.Atan2(mouseCoord.x,mouseCoord.y) * Mathf.Rad2Deg;
-       
+         Debug.Log(angle);
         _smallArrow.transform.Rotate(new Vector3(0, 0,  -angle), 2.5f);
        /* Vector3 relative = transform.InverseTransformPoint(eventData.position);
         float angle = Mathf.Atan2(relative.x, relative.y) * Mathf.Rad2Deg;
