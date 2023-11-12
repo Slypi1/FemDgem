@@ -11,49 +11,26 @@ public class StartDuilog : MonoBehaviour
     [SerializeField] private DialogStandartSetting _dialogStandartSetting;
     [SerializeField] private TMP_Text _name;
     [SerializeField] private TMP_Text _dialogText;
+    [SerializeField] private AudioClip _corridor;
+    [SerializeField] private AudioSource _audioSource;
     [SerializeField] private Image _bossOffice;
-    [SerializeField] private Image _start;
     private List<DialogStandartSetting.Dialog> _dialog;
-    [SerializeField]private float _speedText;
     private int _index;
-
-    [Header("BossOffice")]
-    [SerializeField] private TMP_Text _nameOffice;
-    [SerializeField] private TMP_Text _dialogTextOffice;
-    [SerializeField] private GameObject _dialogG;
-    [SerializeField] private Image _girl;
-    [SerializeField] private Image _offic;
-    [SerializeField] private Image _newOffic;
-    [SerializeField] private Image _arrow;
-    private List<DialogStandartSetting.Dialog> _dialogOffice;
-    private DialogStandartSetting.Dialog _tutor;
-
-    private bool i = true;
+    
+    
     private int _indexOffice;
     public static Action OnStartTutor;
 
     private void Start()
     {
+        _audioSource.clip = _corridor;
+        _audioSource.Play();
         _dialog = _dialogStandartSetting.GetStartDialog();
         _index = 0;
-        StartCoroutine(TypeLine());
+        TypeLine();
     }
-
-    private void OnDisable()
-    {
-        Arrow._isWath += ExitTutor;
-    }
-
-    private void OnEnable()
-    {
-        Arrow._isWath -= ExitTutor;
-    }
-
-    private void ExitTutor()
-    {
-        _arrow.gameObject.SetActive(false);
-        _dialog = _dialogStandartSetting.GetEndDialogs();
-    }
+    
+    
     public void OnNextDialod()
     {
         _dialogText.text = string.Empty;
@@ -61,43 +38,24 @@ public class StartDuilog : MonoBehaviour
         if (_index < _dialog.Count - 1)
         {
             _index++;
-            StartCoroutine(TypeLine());
+           TypeLine();
         }
         else
-        { 
-            _start.gameObject.SetActive(false);
-           _bossOffice.gameObject.SetActive(true);
-           _tutor = _dialogStandartSetting.StartTutorial;
-           StartCoroutine(TypeTutor());
+        {
+            _audioSource.Stop();
+            _bossOffice.gameObject.SetActive(true);
+            this.gameObject.SetActive(false);
         }
     }
 
     public void StartTutor()
     {
-        _girl.gameObject.SetActive(false);
-        _offic.gameObject.SetActive(false);
-        _newOffic.gameObject.SetActive(true);
         OnStartTutor();
     }
-    IEnumerator TypeLine()
+    private void  TypeLine()
     {
-        var dialog = _dialog[_index].Replica;
+        _dialogText.text = _dialog[_index].Replica;
         _name.text = _dialog[_index].Name;
-        foreach (var x in dialog.ToCharArray())
-        {
-            _dialogText.text += x;
-            yield return new WaitForSeconds(_speedText);
-        }
-    }
-    IEnumerator TypeTutor()
-    {
-        var dialog = _tutor.Replica;
-        _name.text = _tutor.Name;
-        foreach (var x in dialog.ToCharArray())
-        {
-            _dialogText.text += x;
-            yield return new WaitForSeconds(_speedText);
-        }
-        _dialogG.SetActive(false);
+        
     }
 }
