@@ -1,6 +1,6 @@
 public static class StringUtils
 {
-    public static string NicknameString(this string nickName) => string.Format("Позывной: {0}", nickName);
+    public static string NicknameString(this string nickName) => nickName;
     public static string AgeString(this int age) => string.Format("Возраст: {0}", age);
     public static string FamilyStatusString(this string status) => string.Format("Семейное положение: {0}", status);
     public static string AccessLevelString(this string access) => string.Format("Уровень допуска: {0}", access);

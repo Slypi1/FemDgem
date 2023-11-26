@@ -21,7 +21,11 @@ public class DialogStandartSetting :ScriptableObject
         var dialog = _dialogDates[1].Dialog;
         return dialog;
     }
-
+    public List<Dialog> GetFirstDialogZeta()
+    {
+        var dialog = _dialogDates[2].Dialog;
+        return dialog;
+    }
     public Dialog StartTutorial => _startTutorial;
     public Dialog ExitTutorial => _exitTutorial;
 

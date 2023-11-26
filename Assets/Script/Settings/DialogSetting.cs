@@ -20,6 +20,7 @@ public class DialogSetting :ScriptableObject
 
     public Sprite GetIcon(string name)
     {
+        Debug.Log(name);
         var icon = _dialogDates.Find(x => x.Name == name).Icon;
 
         return icon;

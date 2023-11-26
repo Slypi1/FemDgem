@@ -15,7 +15,7 @@ public class TImeText : MonoBehaviour
     [SerializeField] private Image _bossOffice;
     private const string START_TEXT = "17 ноября 1947 года" + "\n" + "18:30";
     private string _text;
-
+    public static Action StartDiologBoss;
     private void OnEnable()
     {
         Arrow.OnWath += NextTutor;
@@ -32,23 +32,25 @@ public class TImeText : MonoBehaviour
         _audioSource.Play();
         StartCoroutine(TypeLine());
     }
-
-    private void Update()
-    {
-        Debug.Log(Time.deltaTime);
-    }
+    
 
     IEnumerator TypeLine()
     {
         foreach (var x in START_TEXT.ToCharArray())
         {
             _timeText.text += x;
-            yield return new WaitForSeconds(_speedText);
+            yield return new WaitForSeconds((_audioSource.clip.channels -1)/START_TEXT.ToCharArray().Length);
         }
+
+        StartCoroutine(Corridor());
+    }
+
+    IEnumerator Corridor()
+    {
+        yield return new WaitForSeconds(_audioSource.clip.channels);
         _audioSource.Stop();
         _corridor.gameObject.SetActive(true);
     }
-
     private void NextTutor(int i)
     {
         if (i == 0)
@@ -66,9 +68,16 @@ public class TImeText : MonoBehaviour
         foreach (var x in _text.ToCharArray())
         {
             _timeText.text += x;
-            yield return new WaitForSeconds(_speedText);
+            yield return new WaitForSeconds((_audioSource.clip.channels -1)/_text.ToCharArray().Length);
         }
+        StartCoroutine(ToturEnd());
+    }
+
+    IEnumerator ToturEnd()
+    {
+        yield return new WaitForSeconds(_audioSource.clip.channels);
         _audioSource.Stop();
         _bossOffice.gameObject.SetActive(true);
+        StartDiologBoss();
     }
 }

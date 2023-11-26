@@ -11,12 +11,14 @@ public class Arrow : MonoBehaviour,IBeginDragHandler,IDragHandler
 {
     [SerializeField] private Image _smallArrow;
     [SerializeField] private Image _bigArrov;
-    public Vector3 mousePos, position;
-    private Vector2 mousePosition;
     [SerializeField] private Image _tutor;
     [SerializeField] private AudioClip _watch;
     [SerializeField] private AudioSource _audioSource;
-    
+    [SerializeField] private Image _bossOffice;
+    [SerializeField] private Image _bossImage;
+    [SerializeField] private Sprite _boss;
+    [SerializeField] private Image _girl;
+    [SerializeField] private Image _dialofPanel;
     public static Action <int> OnWath;
 
     public void Start()
@@ -39,12 +41,16 @@ public class Arrow : MonoBehaviour,IBeginDragHandler,IDragHandler
             _audioSource.Stop();
             OnWath(0);
             _tutor.gameObject.SetActive(false);
+            _bossImage.sprite = _boss;
+            _girl.gameObject.SetActive(true);
+            _dialofPanel.gameObject.SetActive(true);
+            _bossOffice.gameObject.SetActive(false);
         }
         Debug.Log(_bigArrov.GetComponent<RectTransform>().transform.rotation.z);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        mousePosition = eventData.position;
+     
     }
 }

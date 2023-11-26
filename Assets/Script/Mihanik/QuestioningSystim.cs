@@ -18,9 +18,12 @@ public class QuestioningSystim : MonoBehaviour
    private List<DialogSetting.Dialog> _dialogs;
    [SerializeField]private Quests _prefab;
    [SerializeField]private Transform _transformParent;
+   [SerializeField] private Image _officeGG;
+   [SerializeField] private Image _dopros;
+   private List<DialogSetting.Question> questions = new List<DialogSetting.Question>();
    
    private string _diolog;
-   private int index;
+   private int _index;
    private string _namePer;
    private List<string> _question = new List<string>();
    private void OnEnable()
@@ -37,47 +40,54 @@ public class QuestioningSystim : MonoBehaviour
    private void  StartQuestioning(string name)
    {
       _icon.sprite = _dialogSetting.GetIcon(name);
-      _sprite.GameObject().SetActive(true);
       _namePer= name;
+     questions = _dialogSetting.GetQuestion(name) ;
       ShowQuest();
    }
 
    private void  ShowQuest()
    {
-      var questions = _dialogSetting.GetQuestion(_namePer);
-      var idx = 0;
+      //questions = _dialogSetting.GetQuestion(_namePer);
+      _sprite.GameObject().SetActive(true);
       if (_question.Count != questions.Count)
       {
-         foreach (var question in questions)
+         for (int i = 0; i < questions.Count; i++)
          {
-            if (_question.Contains(question.Quest))
-               continue;
-            
-            _transformParent.GetChild(idx).GetComponent<Quests>().gameObject.SetActive(true);
-            _transformParent.GetChild(idx).GetComponent<Quests>().Setup(question.Quest);
-            idx++;
+            if (_question.Contains(questions[i].Quest))
+            {
+               _transformParent.GetChild(i).GetComponent<Quests>().gameObject.SetActive(false);
+            }
+            else
+            {
+               _transformParent.GetChild(i).GetComponent<Quests>().gameObject.SetActive(true);
+               _transformParent.GetChild(i).GetComponent<Quests>().Setup(questions[i].Quest);
+            }
          }
       }
       else
       {
-         _sprite.gameObject.SetActive(false);
+         _officeGG.gameObject.SetActive(true);
+         questions = new List<DialogSetting.Question>();
+         _question = new List<string>();
+         _dopros.gameObject.SetActive(false);
       }
    }
    private void StartDialog(string quest)
    {
        _question.Add(quest);
-       index = 0;
+       _index = 0;
+       _sprite.GameObject().SetActive(false);
       _dialogs = _dialogSetting.GetDialogs(quest,_namePer);
-      StartCoroutine(TypeLine());
+      TypeLine();
    }
    public void OnNextDialod()
    {
       _dialogText.text = string.Empty;
       _name.text = string.Empty;
-      if (index < _dialogs.Count - 1)
+      if (_index < _dialogs.Count - 1)
       {
-         index++;
-         StartCoroutine(TypeLine());
+         _index++;
+         TypeLine();
       }
       else
       {
@@ -85,18 +95,9 @@ public class QuestioningSystim : MonoBehaviour
       }
    }
    
-   IEnumerator TypeLine()
+   private void TypeLine()
    {
-      for (int i = 0; i < _transformParent.childCount; i++)
-      {
-         _transformParent.GetChild(i).gameObject.SetActive(false);
-      }
-      var dialog = _dialogs[index].Replica;
-      _name.text = _dialogs[index].Name;
-         foreach (var x in dialog.ToCharArray())
-         {
-            _dialogText.text += x;
-            yield return new WaitForSeconds(_speedText);
-         }
+      _dialogText.text = _dialogs[_index].Replica;
+      _name.text = _dialogs[_index].Name;
    }
 }

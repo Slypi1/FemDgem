@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e1143315120854195ea49c85060be1, type: 3}
   m_Name: "\u041B\u0430\u0431\u043E\u0440\u0430\u043D\u0442\u043A\u0430 27.08"
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
-  _nickname: "\u041B\u0430\u0431\u043E\u0440\u0430\u043D\u0442\u043A\u0430 27.08"
+  _icon: {fileID: 21300000, guid: 2d5fb7420d00a8c43b2581130cd99403, type: 3}
+  _nickname: "\u041B\u0430\u0431\u043E\u0440\u0430\u043D\u0442\u043A\u0430 27.08 "
   _age: 23
   _familyStatus: "\u043D\u0435 \u0437\u0430\u043C\u0443\u0436\u0435\u043C"
   _accessLevel: "\u043E\u0433\u0440\u0430\u043D\u0438\u0447\u0435\u043D\u043D\u044B\u0439,

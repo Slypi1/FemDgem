@@ -11,14 +11,27 @@ public class StartBossOffice : MonoBehaviour
     [SerializeField] private TMP_Text _name;
     [SerializeField] private TMP_Text _dialogText;
     [SerializeField] private AudioClip _bossOffice;
+    [SerializeField] private AudioClip _bossOfficeDialog;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private Image _panelDialog;
     [SerializeField] private Image _file;
     [SerializeField] private Image _filePopup;
-    [SerializeField] private Image _bossOfficeImage;
     [SerializeField] private Image _tutor;
-    [SerializeField] private Image _girl;
-    [SerializeField] private Sprite _noBoss;
+    [SerializeField] private Image _nextButton;
+    [SerializeField] private Image _officegg;
+    private List<DialogStandartSetting.Dialog> _dialogs = new List<DialogStandartSetting.Dialog>();
+    private int _index;
+
+
+    private void OnEnable()
+    {
+        TImeText.StartDiologBoss += StartDialogBoss;
+    }
+
+    private void OnDisable()
+    {
+        TImeText.StartDiologBoss -= StartDialogBoss;
+    }
 
     private void Start()
     {
@@ -47,15 +60,46 @@ public class StartBossOffice : MonoBehaviour
 
     public void OnFile()
     {
-        _girl.gameObject.SetActive(false);
-        _bossOfficeImage.sprite = _noBoss;
-        _filePopup.gameObject.SetActive(true);
+       _filePopup.gameObject.SetActive(true);
     }
 
     public void OnStartTutor()
     {
+        _filePopup.gameObject.SetActive(false);
         _tutor.gameObject.SetActive(true);
-        _bossOfficeImage.gameObject.SetActive(false);
-        _audioSource.Stop();
+    }
+
+    private void StartDialogBoss()
+    {
+        _nextButton.gameObject.SetActive(true);
+        _dialogText.text = string.Empty;
+        _name.text = string.Empty;
+        _audioSource.clip = _bossOfficeDialog;
+        _audioSource.Play();
+        _dialogs = _dialogStandartSetting.GetEndDialogs();
+        _index = 0;
+        TypeLine();
+    }
+    private void  TypeLine()
+    {
+        _dialogText.text = _dialogs[_index].Replica;
+        _name.text = _dialogs[_index].Name;
+    }
+
+    public void OnNextDialod()
+    {
+        _dialogText.text = string.Empty;
+        _name.text = string.Empty;
+        if (_index < _dialogs.Count - 1)
+        {
+            _index++;
+            TypeLine();
+        }
+        else
+        {
+            _audioSource.Stop();
+            _officegg.gameObject.SetActive(true);
+            gameObject.SetActive(false);
+        }
     }
 }
