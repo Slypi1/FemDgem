@@ -14,6 +14,7 @@ public class StartDuilog : MonoBehaviour
     [SerializeField] private AudioClip _corridor;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private Image _bossOffice;
+    [SerializeField] private Image _button;
     private List<DialogStandartSetting.Dialog> _dialog;
     private int _index;
     
@@ -44,6 +45,7 @@ public class StartDuilog : MonoBehaviour
         {
             _audioSource.Stop();
             _bossOffice.gameObject.SetActive(true);
+            _button.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
         }
     }

@@ -19,9 +19,10 @@ public class QuestioningSystim : MonoBehaviour
    [SerializeField]private Quests _prefab;
    [SerializeField]private Transform _transformParent;
    [SerializeField] private Image _officeGG;
+   [SerializeField] private Image _corridor;
    [SerializeField] private Image _dopros;
    private List<DialogSetting.Question> questions = new List<DialogSetting.Question>();
-   
+   public static Action<string> OnAftorDialog;
    private string _diolog;
    private int _index;
    private string _namePer;
@@ -66,7 +67,16 @@ public class QuestioningSystim : MonoBehaviour
       }
       else
       {
-         _officeGG.gameObject.SetActive(true);
+         if (_dialogSetting.GetLocation(_namePer) == 0)
+         {
+            _corridor.gameObject.SetActive(true);
+            OnAftorDialog(_namePer);
+         }
+         else
+         {
+            _officeGG.gameObject.SetActive(true);
+            OnAftorDialog(_namePer);
+         }
          questions = new List<DialogSetting.Question>();
          _question = new List<string>();
          _dopros.gameObject.SetActive(false);

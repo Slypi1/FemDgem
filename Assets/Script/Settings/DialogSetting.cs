@@ -26,6 +26,18 @@ public class DialogSetting :ScriptableObject
         return icon;
     }
 
+    public int GetLocation(string name)
+    {
+        var number = _dialogDates.Find(x => x.Name == name).Location;
+        return number;
+    }
+
+    public List<Dialog> GetAdterDiologs(string name)
+    {
+        var dioalod = _dialogDates.Find(x => x.Name == name).AfterDialogs;
+        return dioalod;
+    }
+
     public List<Question> GetQuestion(string name)
     {
         var questions = new List<Question>();
@@ -40,6 +52,8 @@ public class DialogSetting :ScriptableObject
         public string Name;
         public Sprite Icon;
         public List <Question> Questions;
+        public int Location;
+        public List<Dialog> AfterDialogs;
     }
     
     [Serializable]
