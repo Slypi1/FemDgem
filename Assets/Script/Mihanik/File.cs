@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mime;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -10,6 +11,7 @@ using UnityEngine.UI;
 public class File : MonoBehaviour
 {
     [SerializeField] private List<ProfileSettings> profiles;
+    [SerializeField] private Image _showPopup;
     [SerializeField] private Image _file;
     [SerializeField] private TMP_Text _name;
     [SerializeField] private Image _officeGG;
@@ -31,6 +33,8 @@ public class File : MonoBehaviour
         _dopros.gameObject.SetActive(true);
         OnNameHiro(_name.text);
         _officeGG.gameObject.SetActive(false);
+        _showPopup.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
     public void NextFile()

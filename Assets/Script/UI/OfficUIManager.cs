@@ -16,6 +16,7 @@ public class OfficUIManager : MonoBehaviour
    [SerializeField] private AudioSource _audioSource;
    [SerializeField] private Image _diologPanel;
    [SerializeField] private DialogStandartSetting _dialogStandartSetting;
+   [SerializeField] private Image _button;
    private List<DialogStandartSetting.Dialog> _dialogs = new List<DialogStandartSetting.Dialog>();
    private int _index;
 
@@ -66,6 +67,7 @@ public class OfficUIManager : MonoBehaviour
       else
       {
          _audioSource.Stop();
+         _button.gameObject.SetActive(false);
          _diologPanel.gameObject.SetActive(false);
       }
    }

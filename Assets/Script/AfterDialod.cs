@@ -26,6 +26,10 @@ public class AfterDialod : MonoBehaviour
 
   public void StartDiolod(string name)
   {
+    if (_dialogSetting.GetLocation(name) == 1)
+    {
+      _panelDioalog.gameObject.SetActive(true);
+    }
     _dialogs = _dialogSetting.GetAdterDiologs(name);
     
     _namePerson = name;
