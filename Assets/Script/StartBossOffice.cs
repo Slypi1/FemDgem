@@ -66,6 +66,7 @@ public class StartBossOffice : MonoBehaviour
     public void OnStartTutor()
     {
         _filePopup.gameObject.SetActive(false);
+        _file.raycastTarget = false;
         _tutor.gameObject.SetActive(true);
     }
 

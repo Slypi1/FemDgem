@@ -26,11 +26,13 @@ public class ShowPopupManager : MonoBehaviour
     private void ShowFile()
     {
         _file.gameObject.SetActive(true);
+        _watch.gameObject.SetActive(false);
     }
 
     public void ShowWatch()
     {
         _watch.gameObject.SetActive(true);
+        _file.gameObject.SetActive(false);
     }
 
     public void Cloce()
