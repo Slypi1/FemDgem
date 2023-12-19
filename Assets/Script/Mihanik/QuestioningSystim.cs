@@ -21,12 +21,15 @@ public class QuestioningSystim : MonoBehaviour
    [SerializeField] private Image _officeGG;
    [SerializeField] private Image _corridor;
    [SerializeField] private Image _dopros;
+   [SerializeField] private Animator _animator;
    private List<DialogSetting.Question> questions = new List<DialogSetting.Question>();
-   public static Action<string> OnAftorDialog;
    private string _diolog;
    private int _index;
    private string _namePer;
    private List<string> _question = new List<string>();
+   public static Action<bool,int, string> OnFalse;
+   private string _que;
+   private bool _lieF;
    private void OnEnable()
    {
       File.OnNameHiro += StartQuestioning;
@@ -69,13 +72,11 @@ public class QuestioningSystim : MonoBehaviour
       {
          if (_dialogSetting.GetLocation(_namePer) == 0)
          {
-            _corridor.gameObject.SetActive(true);
-            OnAftorDialog(_namePer);
+            OnFalse(_lieF,0, _namePer);
          }
          else
          {
-            _officeGG.gameObject.SetActive(true);
-            OnAftorDialog(_namePer);
+            OnFalse(_lieF,1, _namePer);
          }
          questions = new List<DialogSetting.Question>();
          _question = new List<string>();
@@ -84,6 +85,7 @@ public class QuestioningSystim : MonoBehaviour
    }
    private void StartDialog(string quest)
    {
+      _que= quest;
        _question.Add(quest);
        _index = 0;
        _sprite.GameObject().SetActive(false);
@@ -101,6 +103,7 @@ public class QuestioningSystim : MonoBehaviour
       }
       else
       {
+         _animator.SetFloat("IsFalse", 0);
          ShowQuest();
       }
    }
@@ -109,5 +112,10 @@ public class QuestioningSystim : MonoBehaviour
    {
       _dialogText.text = _dialogs[_index].Replica;
       _name.text = _dialogs[_index].Name;
+      var lie = _dialogSetting.IsFalse(_namePer, _que, _dialogs[_index].Replica);
+      _lieF = lie == 0
+         ? false
+         : true;
+      _animator.SetFloat("IsFalse", lie);
    }
 }

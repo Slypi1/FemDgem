@@ -16,12 +16,12 @@ public class AfterDialod : MonoBehaviour
   
   private void OnEnable()
   {
-    QuestioningSystim.OnAftorDialog += StartDiolod;
+    TImeText.OnAfterDiolog += StartDiolod;
   }
 
   private void OnDisable()
   {
-    QuestioningSystim.OnAftorDialog += StartDiolod;
+    TImeText.OnAfterDiolog += StartDiolod;
   }
 
   public void StartDiolod(string name)

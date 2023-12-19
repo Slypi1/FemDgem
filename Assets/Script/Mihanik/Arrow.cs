@@ -19,6 +19,7 @@ public class Arrow : MonoBehaviour,IBeginDragHandler,IDragHandler
     [SerializeField] private Sprite _boss;
     [SerializeField] private Image _girl;
     [SerializeField] private Image _dialofPanel;
+    [SerializeField] private Image _showPopup;
     public static Action <int> OnWath;
 
     public void Start()
@@ -45,6 +46,7 @@ public class Arrow : MonoBehaviour,IBeginDragHandler,IDragHandler
             _girl.gameObject.SetActive(true);
             _dialofPanel.gameObject.SetActive(true);
             _bossOffice.gameObject.SetActive(false);
+            _showPopup.gameObject.SetActive(false);
         }
         Debug.Log(_bigArrov.GetComponent<RectTransform>().transform.rotation.z);
     }

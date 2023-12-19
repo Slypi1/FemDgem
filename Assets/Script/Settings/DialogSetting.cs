@@ -46,6 +46,15 @@ public class DialogSetting :ScriptableObject
         return questions;
     }
 
+    public float IsFalse(string name, string question, string diolog)
+    {
+       
+       var questions = _dialogDates.Find(x => x.Name == name).Questions;
+       var dialogs = questions.Find(x => x.Quest == question).Dialogs;
+       var lie = dialogs.Find(x => x.Replica == diolog).Lie;
+       return lie;
+    }
+
     [Serializable]
     public class DialogDate
     {

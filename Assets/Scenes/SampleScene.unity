@@ -495,7 +495,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.58}
   m_AnchorMin: {x: 0.69047904, y: 0.136}
   m_AnchorMax: {x: 0.77747905, y: 0.3237027}
-  m_AnchoredPosition: {x: 0.6910095, y: -2.2301025}
+  m_AnchoredPosition: {x: 0.690979, y: -2.2301025}
   m_SizeDelta: {x: -2.5579987, y: 3.9380035}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &38234875
@@ -2385,6 +2385,7 @@ MonoBehaviour:
   _audioSource: {fileID: 1522199481}
   _corridor: {fileID: 1233532287}
   _bossOffice: {fileID: 473556373}
+  _officeGG: {fileID: 630166808}
 --- !u!1 &318630470
 GameObject:
   m_ObjectHideFlags: 0
@@ -6299,7 +6300,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.18210386}
-  m_AnchoredPosition: {x: 0.0018920898, y: -0.6228838}
+  m_AnchoredPosition: {x: 0.0018920898, y: -0.6228876}
   m_SizeDelta: {x: -0.2000122, y: -0.8059006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &724019243
@@ -7667,7 +7668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &916141596
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7740,10 +7741,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profiles:
-  - {fileID: 11400000, guid: ddaecf41573383f4baa979bec74385b1, type: 2}
-  - {fileID: 11400000, guid: cb56c94c2e31f5145b108ad4d5c7a7f6, type: 2}
-  - {fileID: 11400000, guid: 922fb1f587725ad45a032880e22021e8, type: 2}
   - {fileID: 11400000, guid: d95073cffc416074e9b73c938e00a10e, type: 2}
+  - {fileID: 11400000, guid: 922fb1f587725ad45a032880e22021e8, type: 2}
   - {fileID: 11400000, guid: ef598f7983c566c4f9012e687f5cba44, type: 2}
   _showPopup: {fileID: 284515123}
   _file: {fileID: 1925164743}
