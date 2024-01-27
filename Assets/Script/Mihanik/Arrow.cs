@@ -46,7 +46,6 @@ public class Arrow : MonoBehaviour,IBeginDragHandler,IDragHandler
             _girl.gameObject.SetActive(true);
             _dialofPanel.gameObject.SetActive(true);
             _bossOffice.gameObject.SetActive(false);
-            _showPopup.gameObject.SetActive(false);
         }
         Debug.Log(_bigArrov.GetComponent<RectTransform>().transform.rotation.z);
     }

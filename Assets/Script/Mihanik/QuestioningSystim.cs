@@ -10,6 +10,8 @@ using UnityEngine.UI;
 public class QuestioningSystim : MonoBehaviour
 {
    [SerializeField] private DialogSetting _dialogSetting;
+   [SerializeField] private List<AudioClip> _audioClips;
+   [SerializeField] private AudioSource _audioSource;
    [SerializeField] private TMP_Text _dialogText;
    [SerializeField] private TMP_Text _name;
    [SerializeField] private Image _icon;
@@ -30,23 +32,46 @@ public class QuestioningSystim : MonoBehaviour
    public static Action<bool,int, string> OnFalse;
    private string _que;
    private bool _lieF;
+   private static int _clip;
+   private bool _isTwoDialog;
    private void OnEnable()
    {
       File.OnNameHiro += StartQuestioning;
+      File.OnNameTwoDialod += TwoDialod;
       Quests.OnQuestion += StartDialog;
    }
    private void OnDisable()
    {
       File.OnNameHiro -= StartQuestioning;
+      File.OnNameTwoDialod -= TwoDialod;
       Quests.OnQuestion -= StartDialog;
    }
 
    private void  StartQuestioning(string name)
    {
+      _clip++;
+
+      if (_clip == 3)
+      {
+         _clip = 0;
+      }
+
+      _audioSource.clip = _audioClips[_clip];
+      _audioSource.Play();
       _icon.sprite = _dialogSetting.GetIcon(name);
       _namePer= name;
-     questions = _dialogSetting.GetQuestion(name) ;
+
+      if (!_isTwoDialog)
+      {
+         questions = _dialogSetting.GetQuestion(name);
+      }
+      else
+      {
+         questions = _dialogSetting.GetQuestionTwo(name);
+      }
+
       ShowQuest();
+      
    }
 
    private void  ShowQuest()
@@ -80,17 +105,37 @@ public class QuestioningSystim : MonoBehaviour
          }
          questions = new List<DialogSetting.Question>();
          _question = new List<string>();
+         _audioSource.Stop();
          _dopros.gameObject.SetActive(false);
       }
    }
    private void StartDialog(string quest)
    {
       _que= quest;
-       _question.Add(quest);
-       _index = 0;
-       _sprite.GameObject().SetActive(false);
-      _dialogs = _dialogSetting.GetDialogs(quest,_namePer);
+      _question.Add(quest);
+      _index = 0;
+      _sprite.GameObject().SetActive(false);
+      if (!_isTwoDialog)
+      {
+         _dialogs = _dialogSetting.GetDialogs(quest, _namePer);
+      }
+      else
+      {
+         _dialogs = _dialogSetting.GetTwoDialogs(quest, _namePer);
+      }
+
       TypeLine();
+   }
+
+   private void TwoDialod(string name)
+   {
+      _audioSource.clip = _audioClips[_audioClips.Count -1];
+      _audioSource.Play();
+      _icon.sprite = _dialogSetting.GetIcon(name);
+      _namePer= name;
+      questions = _dialogSetting.GetQuestionTwo(name) ;
+      _isTwoDialog = true;
+      ShowQuest();
    }
    public void OnNextDialod()
    {
@@ -103,7 +148,7 @@ public class QuestioningSystim : MonoBehaviour
       }
       else
       {
-         _animator.SetFloat("IsFalse", 0);
+         //_animator.SetFloat("IsFalse", 0);
          ShowQuest();
       }
    }
@@ -116,6 +161,6 @@ public class QuestioningSystim : MonoBehaviour
       _lieF = lie == 0
          ? false
          : true;
-      _animator.SetFloat("IsFalse", lie);
+         //_animator.SetFloat("IsFalse", lie);
    }
 }

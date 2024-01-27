@@ -9,6 +9,7 @@ public class ShowPopupManager : MonoBehaviour
     [SerializeField] private Image _file;
     [SerializeField] private Image _watch;
     [SerializeField] private OfficUIManager _officPopup;
+    public static Action OnStart;
     private void OnEnable()
     {
         _officPopup.OnOpenFile += ShowFile;
@@ -26,6 +27,7 @@ public class ShowPopupManager : MonoBehaviour
     private void ShowFile()
     {
         _file.gameObject.SetActive(true);
+        OnStart();
         _watch.gameObject.SetActive(false);
     }
 

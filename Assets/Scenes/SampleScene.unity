@@ -4060,6 +4060,7 @@ MonoBehaviour:
   _boss: {fileID: 21300000, guid: ccf66d76fc991fe4796f1ae734f51b7e, type: 3}
   _girl: {fileID: 1568644118}
   _dialofPanel: {fileID: 1955997331}
+  _showPopup: {fileID: 0}
 --- !u!114 &475504620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6300,7 +6301,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.18210386}
-  m_AnchoredPosition: {x: 0.0018920898, y: -0.6228876}
+  m_AnchoredPosition: {x: 0.0018920898, y: -0.6228914}
   m_SizeDelta: {x: -0.2000122, y: -0.8059006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &724019243
@@ -7741,8 +7742,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profiles:
+  - {fileID: 11400000, guid: cb56c94c2e31f5145b108ad4d5c7a7f6, type: 2}
   - {fileID: 11400000, guid: d95073cffc416074e9b73c938e00a10e, type: 2}
   - {fileID: 11400000, guid: 922fb1f587725ad45a032880e22021e8, type: 2}
+  - {fileID: 11400000, guid: ddaecf41573383f4baa979bec74385b1, type: 2}
   - {fileID: 11400000, guid: ef598f7983c566c4f9012e687f5cba44, type: 2}
   _showPopup: {fileID: 284515123}
   _file: {fileID: 1925164743}
@@ -7750,6 +7753,7 @@ MonoBehaviour:
   _officeGG: {fileID: 630166808}
   _dopros: {fileID: 2041693069}
   _popupShow: {fileID: 284515123}
+  _doprosButton: {fileID: 1266833907}
 --- !u!1001 &945268911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9430,6 +9434,7 @@ MonoBehaviour:
   _boss: {fileID: 0}
   _girl: {fileID: 0}
   _dialofPanel: {fileID: 0}
+  _showPopup: {fileID: 0}
 --- !u!114 &1216564329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11046,6 +11051,7 @@ MonoBehaviour:
   _boss: {fileID: 21300000, guid: ccf66d76fc991fe4796f1ae734f51b7e, type: 3}
   _girl: {fileID: 1568644118}
   _dialofPanel: {fileID: 1955997331}
+  _showPopup: {fileID: 0}
 --- !u!1 &1537693096
 GameObject:
   m_ObjectHideFlags: 0
@@ -12811,6 +12817,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogSetting: {fileID: 11400000, guid: df2b126bd8973fd4d8c7e21290c05d96, type: 2}
+  _audioClips: []
+  _audioSource: {fileID: 0}
   _dialogText: {fileID: 203556693}
   _name: {fileID: 901375493}
   _icon: {fileID: 616838038}
@@ -12821,6 +12829,7 @@ MonoBehaviour:
   _officeGG: {fileID: 0}
   _corridor: {fileID: 0}
   _dopros: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!114 &1786351838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14498,6 +14507,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogSetting: {fileID: 11400000, guid: df2b126bd8973fd4d8c7e21290c05d96, type: 2}
+  _audioClips:
+  - {fileID: 8300000, guid: ec1863aee59dfc043aba0704b20e1df1, type: 3}
+  - {fileID: 8300000, guid: 68a59c8b8fb4a49498b2de137268c757, type: 3}
+  - {fileID: 8300000, guid: a7fac902d3a320646b83f72ddacc9fc1, type: 3}
+  _audioSource: {fileID: 1522199481}
   _dialogText: {fileID: 1927281943}
   _name: {fileID: 631071171}
   _icon: {fileID: 792690541}
@@ -14508,6 +14522,7 @@ MonoBehaviour:
   _officeGG: {fileID: 630166808}
   _corridor: {fileID: 1233532287}
   _dopros: {fileID: 2041693069}
+  _animator: {fileID: 0}
 --- !u!114 &2041693069
 MonoBehaviour:
   m_ObjectHideFlags: 0

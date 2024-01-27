@@ -17,6 +17,14 @@ public class DialogSetting :ScriptableObject
         
         return dialogs;
     }
+    public List<Dialog> GetTwoDialogs(string quest, string name)
+    {
+        var dialogs = new List<Dialog>();
+        var questions = _dialogDates.Find(x => x.Name == name).TwoDialogs;
+        dialogs = questions.Find(x => x.Quest == quest).Dialogs;
+        
+        return dialogs;
+    }
 
     public Sprite GetIcon(string name)
     {
@@ -37,11 +45,18 @@ public class DialogSetting :ScriptableObject
         var dioalod = _dialogDates.Find(x => x.Name == name).AfterDialogs;
         return dioalod;
     }
-
+    
     public List<Question> GetQuestion(string name)
     {
         var questions = new List<Question>();
         questions = _dialogDates.Find(x => x.Name == name).Questions;
+
+        return questions;
+    }
+    public List<Question> GetQuestionTwo(string name)
+    {
+        var questions = new List<Question>();
+        questions = _dialogDates.Find(x => x.Name == name).TwoDialogs;
 
         return questions;
     }
@@ -63,6 +78,7 @@ public class DialogSetting :ScriptableObject
         public List <Question> Questions;
         public int Location;
         public List<Dialog> AfterDialogs;
+        public List<Question> TwoDialogs;
     }
     
     [Serializable]

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "\u041D\u0430\u0434\u0437\u0438\u0440\u0430\u0442\u0435\u043B\u044C 7.0"
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: c6b66182dc75c464d9835d221b0065d8, type: 3}
+  _iconAfterDopros: {fileID: 21300000, guid: 5798639a27aa9204bbcdcd4cd682e1d7, type: 3}
   _nickname: "\u041D\u0430\u0434\u0437\u0438\u0440\u0430\u0442\u0435\u043B\u044C"
   _age: 32
   _familyStatus: "\u0416\u0435\u043D\u0430\u0442, 1 \u0440\u0435\u0431\u0451\u043D\u043E\u043A"

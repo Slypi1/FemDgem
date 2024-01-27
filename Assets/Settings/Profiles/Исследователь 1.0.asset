@@ -14,6 +14,7 @@ MonoBehaviour:
     1.0"
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: be903489750f5f74790c9edec5017b65, type: 3}
+  _iconAfterDopros: {fileID: 21300000, guid: 023c21bf5d80dd247b55d2f8e67ff933, type: 3}
   _nickname: "\u0418\u0441\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u0442\u0435\u043B\u044C
     1.0"
   _age: 56
