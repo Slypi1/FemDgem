@@ -24,6 +24,7 @@ public class QuestioningSystim : MonoBehaviour
    [SerializeField] private Image _corridor;
    [SerializeField] private Image _dopros;
    [SerializeField] private Animator _animator;
+   [SerializeField] private Button _nextDiolog;
    private List<DialogSetting.Question> questions = new List<DialogSetting.Question>();
    private string _diolog;
    private int _index;
@@ -115,6 +116,8 @@ public class QuestioningSystim : MonoBehaviour
       _question.Add(quest);
       _index = 0;
       _sprite.GameObject().SetActive(false);
+      _sprite.preserveAspect = true;
+      _nextDiolog.gameObject.SetActive(true);
       if (!_isTwoDialog)
       {
          _dialogs = _dialogSetting.GetDialogs(quest, _namePer);
@@ -129,6 +132,7 @@ public class QuestioningSystim : MonoBehaviour
 
    private void TwoDialod(string name)
    {
+      
       _audioSource.clip = _audioClips[_audioClips.Count -1];
       _audioSource.Play();
       _icon.sprite = _dialogSetting.GetIcon(name);
@@ -150,6 +154,7 @@ public class QuestioningSystim : MonoBehaviour
       {
          //_animator.SetFloat("IsFalse", 0);
          ShowQuest();
+         _nextDiolog.gameObject.SetActive(false);
       }
    }
    

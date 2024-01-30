@@ -11,6 +11,7 @@ public class AfterDialod : MonoBehaviour
   private List<DialogSetting.Dialog> _dialogs = new List<DialogSetting.Dialog>();
   [SerializeField] private Image _officegg;
   [SerializeField] private Image _panelDioalog;
+  [SerializeField] private Button _nextDiolog;
   private int _index;
   private string _namePerson;
   
@@ -31,8 +32,9 @@ public class AfterDialod : MonoBehaviour
       if (_dialogSetting.GetLocation(name) == 1)
       {
         _panelDioalog.gameObject.SetActive(true);
+        _nextDiolog.gameObject.SetActive(true);
       }
-
+      
       _dialogs = _dialogSetting.GetAdterDiologs(name);
     }
     else
@@ -40,6 +42,7 @@ public class AfterDialod : MonoBehaviour
       if (_dialogSetting.GetLocation(name) == 1)
       {
         _panelDioalog.gameObject.SetActive(true);
+        _nextDiolog.gameObject.SetActive(true);
       }
 
       _dialogs = _dialogSetting.GetEndDiologs(name);
@@ -73,6 +76,7 @@ public class AfterDialod : MonoBehaviour
       else
       {
         _panelDioalog.gameObject.SetActive(false);
+        _nextDiolog.gameObject.SetActive(false);
       }
     }
   }
