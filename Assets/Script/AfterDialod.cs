@@ -24,14 +24,27 @@ public class AfterDialod : MonoBehaviour
     TImeText.OnAfterDiolog += StartDiolod;
   }
 
-  public void StartDiolod(string name)
+  public void StartDiolod(bool isEnd, string name)
   {
-    if (_dialogSetting.GetLocation(name) == 1)
+    if (!isEnd)
     {
-      _panelDioalog.gameObject.SetActive(true);
+      if (_dialogSetting.GetLocation(name) == 1)
+      {
+        _panelDioalog.gameObject.SetActive(true);
+      }
+
+      _dialogs = _dialogSetting.GetAdterDiologs(name);
     }
-    _dialogs = _dialogSetting.GetAdterDiologs(name);
-    
+    else
+    {
+      if (_dialogSetting.GetLocation(name) == 1)
+      {
+        _panelDioalog.gameObject.SetActive(true);
+      }
+
+      _dialogs = _dialogSetting.GetEndDiologs(name);
+    }
+
     _namePerson = name;
     _index = 0;
     TypeLine();

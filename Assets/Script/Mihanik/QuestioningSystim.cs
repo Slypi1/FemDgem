@@ -29,7 +29,7 @@ public class QuestioningSystim : MonoBehaviour
    private int _index;
    private string _namePer;
    private List<string> _question = new List<string>();
-   public static Action<bool,int, string> OnFalse;
+   public static Action<bool,int, string, bool> OnFalse;
    private string _que;
    private bool _lieF;
    private static int _clip;
@@ -97,11 +97,11 @@ public class QuestioningSystim : MonoBehaviour
       {
          if (_dialogSetting.GetLocation(_namePer) == 0)
          {
-            OnFalse(_lieF,0, _namePer);
+            OnFalse(_lieF,0, _namePer, _isTwoDialog);
          }
          else
          {
-            OnFalse(_lieF,1, _namePer);
+            OnFalse(_lieF,1, _namePer, _isTwoDialog);
          }
          questions = new List<DialogSetting.Question>();
          _question = new List<string>();

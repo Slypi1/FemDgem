@@ -2229,6 +2229,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 916141596}
+  - {fileID: 2067821404}
   m_Father: {fileID: 630166807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4060,7 +4061,8 @@ MonoBehaviour:
   _boss: {fileID: 21300000, guid: ccf66d76fc991fe4796f1ae734f51b7e, type: 3}
   _girl: {fileID: 1568644118}
   _dialofPanel: {fileID: 1955997331}
-  _showPopup: {fileID: 0}
+  _showPopup: {fileID: 284515123}
+  _isRewind: 1
 --- !u!114 &475504620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5624,7 +5626,6 @@ RectTransform:
   - {fileID: 647052420}
   - {fileID: 453958826}
   - {fileID: 284515121}
-  - {fileID: 2067821404}
   m_Father: {fileID: 1522199480}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6301,7 +6302,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.18210386}
-  m_AnchoredPosition: {x: 0.0018920898, y: -0.6228914}
+  m_AnchoredPosition: {x: 0.0018920898, y: -0.62289524}
   m_SizeDelta: {x: -0.2000122, y: -0.8059006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &724019243
@@ -7669,7 +7670,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &916141596
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9333,7 +9334,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.18210386}
-  m_AnchoredPosition: {x: 0.0018920898, y: -0.6229019}
+  m_AnchoredPosition: {x: 0.0018920898, y: -0.62290573}
   m_SizeDelta: {x: -0.2000122, y: -0.8059006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1193372375
@@ -9435,6 +9436,7 @@ MonoBehaviour:
   _girl: {fileID: 0}
   _dialofPanel: {fileID: 0}
   _showPopup: {fileID: 0}
+  _isRewind: 0
 --- !u!114 &1216564329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10042,7 +10044,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.18210386}
-  m_AnchoredPosition: {x: 0.0018920898, y: -0.6229019}
+  m_AnchoredPosition: {x: 0.0018920898, y: -0.6229}
   m_SizeDelta: {x: -0.2000122, y: -0.8059006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1297598487
@@ -11052,6 +11054,7 @@ MonoBehaviour:
   _girl: {fileID: 1568644118}
   _dialofPanel: {fileID: 1955997331}
   _showPopup: {fileID: 0}
+  _isRewind: 0
 --- !u!1 &1537693096
 GameObject:
   m_ObjectHideFlags: 0
@@ -14631,7 +14634,7 @@ RectTransform:
   m_Children:
   - {fileID: 2092558685}
   - {fileID: 1091795495}
-  m_Father: {fileID: 630166807}
+  m_Father: {fileID: 284515121}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

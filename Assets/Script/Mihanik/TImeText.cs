@@ -18,7 +18,7 @@ public class TImeText : MonoBehaviour
     
     private string _text;
     public static Action StartDiologBoss;
-    public static Action<string> OnAfterDiolog;
+    public static Action<bool, string> OnAfterDiolog;
     private void OnEnable()
     {
         Arrow.OnWath += NextTutor;
@@ -31,21 +31,21 @@ public class TImeText : MonoBehaviour
         QuestioningSystim.OnFalse -= AfterDopros;
     }
 
-    private void AfterDopros(bool isFalse, int location, string name)
+    private void AfterDopros(bool isFalse, int location, string name, bool isEnd)
     {
         if (!isFalse)
         {
             _audioSource.clip = _typewriter;
             _audioSource.Play();
             _text = "17 ноября 1947 года" + "\n" + "17:00";
-            StartCoroutine(NextDiolog(location, name));
+            StartCoroutine(NextDiolog(location, name, isEnd));
         }
         else
         {
             _audioSource.clip = _typewriter;
             _audioSource.Play();
             _text = "17 ноября 1947 года" + "\n" + "17:30";
-            StartCoroutine(NextDiolog(location, name));
+            StartCoroutine(NextDiolog(location, name, isEnd));
         }
     }
     void Start()
@@ -82,10 +82,17 @@ public class TImeText : MonoBehaviour
             _text = "17 ноября 1947 года" + "\n" + "15:00";
             StartCoroutine(EndTutor());
         }
+        else
+        {
+            _officeGG.gameObject.SetActive(false);
+            _audioSource.clip = _typewriter;
+            _audioSource.Play();
+            _text = "17 ноября 1947 года" + "\n" + "18:30";
+            StartCoroutine(OffOfficeGG());
+        }
     }
 
-    
-    private IEnumerator NextDiolog(int location, string name)
+    private IEnumerator OffOfficeGG()
     {
         _timeText.text = string.Empty;
         foreach (var x in _text.ToCharArray())
@@ -93,22 +100,39 @@ public class TImeText : MonoBehaviour
             _timeText.text += x;
             yield return new WaitForSeconds((_audioSource.clip.channels -1)/_text.ToCharArray().Length);
         }
-        StartCoroutine(NextLocation(location, name));
+
+        StartCoroutine(Rewid());
+    }
+    IEnumerator Rewid()
+    {
+        yield return new WaitForSeconds(_audioSource.clip.channels);
+        _audioSource.Stop();
+        _officeGG.gameObject.SetActive(true);
+    }
+    private IEnumerator NextDiolog(int location, string name, bool isEnd)
+    {
+        _timeText.text = string.Empty;
+        foreach (var x in _text.ToCharArray())
+        {
+            _timeText.text += x;
+            yield return new WaitForSeconds((_audioSource.clip.channels -1)/_text.ToCharArray().Length);
+        }
+        StartCoroutine(NextLocation(location, name, isEnd));
     }
 
-    private IEnumerator NextLocation(int location, string name)
+    private IEnumerator NextLocation(int location, string name, bool isEnd)
     {
         yield return new WaitForSeconds(_audioSource.clip.channels);
         _audioSource.Stop();
         if (location == 0)
         {
             _corridor.gameObject.SetActive(true);
-            OnAfterDiolog(name);
+            OnAfterDiolog(isEnd, name);
         }
         else
         {
             _officeGG.gameObject.SetActive(true);
-            OnAfterDiolog(name);
+            OnAfterDiolog(isEnd, name);
         }
     }
     IEnumerator EndTutor()

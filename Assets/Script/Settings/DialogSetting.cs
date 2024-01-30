@@ -45,6 +45,11 @@ public class DialogSetting :ScriptableObject
         var dioalod = _dialogDates.Find(x => x.Name == name).AfterDialogs;
         return dioalod;
     }
+    public List<Dialog> GetEndDiologs(string name)
+    {
+        var dioalod = _dialogDates.Find(x => x.Name == name).EndDialogs;
+        return dioalod;
+    }
     
     public List<Question> GetQuestion(string name)
     {
@@ -78,6 +83,7 @@ public class DialogSetting :ScriptableObject
         public List <Question> Questions;
         public int Location;
         public List<Dialog> AfterDialogs;
+        public List<Dialog> EndDialogs;
         public List<Question> TwoDialogs;
     }
     
